@@ -8,11 +8,13 @@ import MusiquesScreen from "./screens/Musiques";
 
 const Stack = createNativeStackNavigator();
 
+// https://reactnavigation.org/docs/bottom-tab-navigator#example : bottom-tab-navigator
+
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Accueil" component={HomeScreen} />
         <Stack.Screen name="Films" component={FilmsScreen} />
         <Stack.Screen name="Musiques" component={MusiquesScreen} />
       </Stack.Navigator>
