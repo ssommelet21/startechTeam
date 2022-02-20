@@ -1,25 +1,29 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import HomeScreen from "./screens/Home";
-import FilmsScreen from "./screens/Films";
+import AccueilScreen from "./screens/Accueil";
 import MusiquesScreen from "./screens/Musiques";
+import FilmsScreen from "./screens/Films";
+import AProposScreen from "./screens/APropos";
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-// https://reactnavigation.org/docs/bottom-tab-navigator#example : bottom-tab-navigator
-
-function App() {
+function MyTabs() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Accueil" component={HomeScreen} />
-        <Stack.Screen name="Films" component={FilmsScreen} />
-        <Stack.Screen name="Musiques" component={MusiquesScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator>
+      <Tab.Screen name="Accueil" component={AccueilScreen} />
+      <Tab.Screen name="Musiques" component={MusiquesScreen} />
+      <Tab.Screen name="Films" component={FilmsScreen} />
+      <Tab.Screen name="A propos" component={AProposScreen} />
+    </Tab.Navigator>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
+  );
+}
