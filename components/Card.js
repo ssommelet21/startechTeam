@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, Image, Text, Dimensions } from "react-native";
+const { width, height } = Dimensions.get("screen");
 
 export default function Card(props) {
   return (
@@ -8,7 +9,7 @@ export default function Card(props) {
         source={{
           uri: props.item.uri,
         }}
-        style={styles.itemPhoto}
+        style={{ width: width - 30, height: width - 30 }}
         resizeMode="cover"
       />
       <Text style={styles.itemText}>{props.item.text}</Text>
@@ -20,10 +21,6 @@ const styles = StyleSheet.create({
   item: {
     margin: 10,
     alignItems: "center",
-  },
-  itemPhoto: {
-    width: 200,
-    height: 200,
   },
   itemText: {
     color: "rgba(255, 255, 255, 0.5)",
