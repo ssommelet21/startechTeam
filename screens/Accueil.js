@@ -3,8 +3,8 @@ import { StyleSheet, View, Image, Dimensions } from "react-native";
 const { width, height } = Dimensions.get("screen");
 
 var heightCanevas;
-const is_windows = true;
-const is_autres = false;
+const is_windows = false;
+const is_autres = true;
 
 // A adapter suivant l'appareil !
 // 101 px pour barre de recherche navigateur Chrome
@@ -18,15 +18,10 @@ if (is_windows) {
   heightCanevas = height - (64 + 48);
 }
 
-console.log(heightCanevas);
-
 const mainImage1 = require("../assets/films.png");
 const mainImage2 = require("../assets/musiques.png");
 
 export default function Accueil({ navigation }) {
-  console.log(width);
-  console.log(height);
-
   return (
     <View
       style={{
