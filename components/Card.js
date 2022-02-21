@@ -1,10 +1,10 @@
 import React from "react";
-import { StyleSheet, Button, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 
 export default function Card() {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Films</Text>
+      <Text>Card</Text>
     </View>
   );
 }

@@ -30,45 +30,53 @@ const ListItem = ({ item }) => {
 export default function Musiques() {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+
+  console.log(SECTIONS);
+  console.log("et ...");
   console.log(data);
-  console.log(REACT_APP_BACKEND_URL);
 
   useEffect(() => {
     fetch(REACT_APP_BACKEND_URL + "/musiques")
       .then((response) => response.json())
-      .then((json) => setData(json))
+      .then((json) => setData(FormatSections(json.musiques)))
       .catch((error) => console.error(error))
-      .finally(() => setLoading(true));
+      .finally(() => setLoading(false));
   }, []);
+
+  const FormatSections = (old_array) => {
+    let new_array = [];
+    let i = 0;
+    old_array.forEach((element) => {
+      new_array.push({ key: i++, uri: element.imageUrl, text: element.titre });
+    });
+
+    let trav = {
+      title: "Musiques",
+      data: new_array,
+    };
+
+    return [trav];
+  };
 
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
       <SafeAreaView style={{ flex: 1 }}>
         {isLoading ? (
-          <Text>Loading...</Text>
+          <Text>Chargement...</Text>
         ) : (
           <SectionList
             contentContainerStyle={{ paddingHorizontal: 10 }}
             stickySectionHeadersEnabled={false}
-            sections={SECTIONS}
+            sections={data}
             renderSectionHeader={({ section }) => (
               <>
-                <Text style={styles.sectionHeader}>{section.title}</Text>
-                {section.horizontal ? (
-                  <FlatList
-                    horizontal
-                    data={section.data}
-                    renderItem={({ item }) => <ListItem item={item} />}
-                    showsHorizontalScrollIndicator={false}
-                  />
-                ) : null}
+                <Text style={styles.sectionHeader}>
+                  Listing avec {section.data.length} occurence(s)
+                </Text>
               </>
             )}
-            renderItem={({ item, section }) => {
-              if (section.horizontal) {
-                return null;
-              }
+            renderItem={({ item }) => {
               return <ListItem item={item} />;
             }}
           />
